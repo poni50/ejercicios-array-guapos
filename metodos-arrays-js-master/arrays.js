@@ -2,99 +2,140 @@
 
 let cities = ["miami", "barcelona", "madrid"];
 
-const capCities = cities.map(e=> 
-  e.charAt(0).toUpperCase()+ e.slice(1));
+const capCities = cities.map((element)=> element.charAt(0).toUpperCase()+ element.slice(1));
 
 console.log(capCities);
 
 //Ejercicio 2
 
-const finalGrades = students.map(function(elem) {
-  let projectsAvg = (elem.firstProject + elem.secondProject)/2;
-  let finalGrade  = elem.finalExam*0.6 + projectsAvg*0.4;
-  return {
-    name: e.name,
-    finalGrade: Math.round(finalGrade)
+
+let  students = [
+  {
+  name: "Tony Parker",
+  firstProject: 80,
+  secondProject: 75,
+  finalExam: 90
+  },
+  {
+  name: "Marc Barchini",
+  firstProject: 84,
+  secondProject: 65,
+  finalExam: 65
+  },
+  {
+  name: "Claudia Lopez",
+  firstProject: 45,
+  secondProject: 95,
+  finalExam: 99
+  },
+  {
+  name: "Alvaro Briattore",
+  firstProject: 82,
+  secondProject: 92,
+  finalExam: 70
+  },
+  {
+  name: "Isabel Ortega",
+  firstProject: 90,
+  secondProject: 32,
+  finalExam: 85
+  },
+  {
+  name: "Francisco Martinez",
+  firstProject: 90,
+  secondProject: 55,
+  finalExam: 78
+  },
+  {
+  name: "Jorge Carrillo",
+  firstProject: 83,
+  secondProject: 77,
+  finalExam: 90
+  },
+  {
+  name: "Miguel López",
+  firstProject: 80,
+  secondProject: 75,
+  finalExam: 75
+  },
+  {
+  name: "Carolina Perez",
+  firstProject: 85,
+  secondProject: 72,
+  finalExam: 67
+  },
+  {
+  name: "Ruben Pardo",
+  firstProject: 89,
+  secondProject: 72,
+  finalExam: 65
   }
+]
+
+
+
+const notasFinales = students.map((element) => {
+  let proyectosMedia = (element.firstProject + element.secondProject)/2;
+  let notaFinal  = element.finalExam*0.6 + proyectosMedia*0.4;
+  return {
+    name: element.name,
+    finalGrade: Math.round(notaFinal)
+  };
 })
+
+console.log(notasFinales);
+
 
 //Ejercicio 3
 
- let averageCalories=menu.reduce(
-  (sum,food,i,a) => {
-    console.log("accumulator is: ", sum, "and current value is: ", food.calories);
-    return sum+food.calories/a.length}
-,0)
+let menu = [
+  { name: "Carrots", calories: 150 },
+  { name: "Steak", calories: 350 },
+  { name: "Broccoli", calories: 120 },
+  { name: "Chicken", calories: 250 },
+  { name: "Pizza", calories: 520 }
+];
 
+const caloriasMedia = menu.reduce((total, element) => total + element.calories, 0) / menu.length;
 
-console.log(averageCalories);
-
-//Ejercicio 3.bis Filtra los elemntos con indice calórico superior a la media
-
-let overCalorics= menu.filter(e => e.calories>averageCalories);
-console.log(overCalorics);
+console.log(caloriasMedia);
 
 //Ejercicio 4
 
-
-let avgRate = product.reviews.reduce(function(p,c,i,a){return p + (c.rate/a.length)},0);
-console.log(avgRate);
-
-//Ejercicio 4.bis Filtra los comentarios de mayor a  menor rate
-
-product.reviews.sort((a,b) => a.rate - b.rate);
-
-console.log(product.reviews);
-
-//Bonus: Pintar estrellitas de valoración
-//index.html
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-
-    <title>Document</title>
-</head>
-<body>
-    <div class="imagen"></div>
-   
-
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-
-    <script src="stars.js"></script>
-</body>
-</html>
-
-//style.scss
-.imagen{
-    background: white url("https://picsum.photos/id/237/200/300") no-repeat;
-    background-size: contain;
-    width: 100vw;
-    height:30vh;
+let product = {
+  name: "JIM'S STORE 2 Bobina 10W Cargador Inalámbrico Titular Anti-Deslizamiento Diseño",
+  price: 15.69,
+  manufacturer: "JIM'S STORE",
+  reviews:
+  [
+    {  user: "Pavel Nedved",
+      comments: "Muy contento",
+      rate: 4
+    },
+    {  user: "Alvaro Trezeguet",
+      comments: "No tiene carga rápida",
+      rate: 1
+    },
+    {  user: "David Recoba",
+      comments: "Excelente relación calidad/precio.",
+      rate: 5
+    },
+    {  user: "Maribel Romero",
+      comments: "Pocas prestaciones",
+      rate: 2
+    },
+    {  user: "Antonio Cano",
+      comments: "Materiales malos",
+      rate: 1
+    },
+  ]
 }
 
-.checked{
-    color: orange;
-}
+const notaMediaProducto = product.reviews.reduce( (total, curValue) => total + curValue.rate, 0) / product.reviews.length;
 
-//stars.js
-  function pintarEstrellitas(){
-      let stars = document.getElementsByClassName('fa-star');
-
-      for(i=0; i<Math.round(avgRate);i++){
-          stars[i].classList.add('checked');
-      }
-  }
-
-  onload = pintarEstrellitas;
+console.log(notaMediaProducto);
 
 
+const starPercentage = (notaMediaProducto / 5) * 100;
+const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+document.getElementsByClassName("stars-inner")[0].style.width = starPercentageRounded;
